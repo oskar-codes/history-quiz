@@ -5,19 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History Quiz</title>
     <style>
-
+       img {
+        display: none;
+       }
     </style>
   </head>
   <body>
 
     <div id="images">
-      
+      <!-- IMAGES GO HERE (with data-label associated) -->
     </div>
 
     <input type="text" id="response">
     
     <script>
-
+      "use strict";
+      
+      const r = _ => images[Math.floor(Math.random() * images.length)]
+      let images = document.querySelectorAll("img");
+      let input = document.querySelector("input");
+      
+      let currentImg = r();
+      currentImg.style.display = "block";
+      
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          let c = currentImg.getAttribute("data-label");
+          let y = input.value.trim();
+          if (c === y) {
+            alert("Correct!");
+          } else {
+            alert(`Incorrect!\nCorrect: ${c}\nYours:${y}`);
+          }
+          currentImg.style.display = "none";
+          currentImg = r();
+          currentImg.style.display = "block";
+        }
+      })
     </script>
   </body>
 </html>
