@@ -130,11 +130,14 @@
     <script>
       "use strict";
       
-      const r = _ => images[Math.floor(Math.random() * images.length)]
+      //const r = _ => images[Math.floor(Math.random() * images.length)];
+      let index = 0;
+      let correct = 0;
       let images = document.querySelectorAll("img");
+      shuffle(images);
       let input = document.querySelector("input");
       
-      let currentImg = r();
+      let currentImg = images[index]
       currentImg.style.display = "block";
       
       input.addEventListener("keydown", (e) => {
@@ -143,15 +146,40 @@
           let y = input.value.trim();
           if (c === y) {
             alert("Correct!");
+            correct++;
           } else {
             alert(`Incorrect!\nCorrect: ${c}\nYours: ${y}`);
           }
           input.value = "";
           currentImg.style.display = "none";
-          currentImg = r();
+          if (index === images.length) {
+            alert("Done!\n" + (correct / images.length * 100) + "% correct answers");
+            index = -1;
+            shuffle(images);
+          }
+          currentImg = images[++index];
           currentImg.style.display = "block";
         }
-      })
+      });
+
+       function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
     </script>
   </body>
 </html>
