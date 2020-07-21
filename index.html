@@ -133,7 +133,7 @@
       //const r = _ => images[Math.floor(Math.random() * images.length)];
       let index = 0;
       let correct = 0;
-      let images = document.querySelectorAll("img");
+      let images = new Array.from(document.querySelectorAll("img"));
       shuffle(images);
       let input = document.querySelector("input");
       
