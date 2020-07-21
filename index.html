@@ -152,7 +152,7 @@
           }
           input.value = "";
           currentImg.style.display = "none";
-          if (index === images.length) {
+          if (index === images.length - 1) {
             alert("Done!\n" + (correct / images.length * 100) + "% correct answers");
             index = -1;
             shuffle(images);
@@ -163,23 +163,23 @@
       });
 
        function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+        var currentIndex = array.length, temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
 
-  return array;
-}
+        return array;
+      }
     </script>
   </body>
 </html>
